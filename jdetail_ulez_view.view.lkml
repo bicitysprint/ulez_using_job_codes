@@ -68,4 +68,50 @@ view: jdetail_ulez_view {
     type: count
     drill_fields: []
   }
+
+  measure: sum_of_client_charge_UL {
+    type: sum
+    sql: ${client_charge_ul} ;;
+  }
+
+
+  measure: sum_of_client_charge_UX {
+    type: sum
+    sql: ${client_charge_ux} ;;
+  }
+
+  measure: sum_of_client_charge_UY {
+    type: sum
+    sql: ${client_charge_uy} ;;
+  }
+
+  measure: sum_of_client_charge_UZ {
+    type: sum
+    sql: ${client_charge_uz} ;;
+  }
+
+
+
+  measure: sum_of_driver_charge_UL {
+    type: sum
+    sql: ${driver_charge_ul} ;;
+  }
+
+
+  measure: sum_of_driver_charge_UX {
+    type: sum
+    sql: ${driver_charge_ux} ;;
+  }
+
+  measure: sum_of_driver_charge_UY {
+    type: sum
+    sql: ${driver_charge_uy} ;;
+  }
+
+  measure: sum_of_driver_charge_UZ {
+    type: sum
+    sql: ${driver_charge_uz} ;;
+  }
+
+
 }
