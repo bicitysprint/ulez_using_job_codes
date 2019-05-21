@@ -43,22 +43,22 @@ view: ut_ops_jobs_snowflake {
     sql: ${TABLE}."BOOKING_TIME" ;;
   }
 
-  dimension: cancelled_on_arrival_£ {
+  dimension: cancelled_on_arrival_money {
     type: number
     sql: ${TABLE}."Cancelled_On_Arrival_£" ;;
   }
 
-  dimension: cancelled_on_arrival_# {
+  dimension: cancelled_on_arrival_value {
     type: number
     sql: ${TABLE}."Cancelled_On_Arrival_#" ;;
   }
 
-  dimension: congestion_charge_£ {
+  dimension: congestion_charge_money {
     type: number
     sql: ${TABLE}."Congestion_Charge_£" ;;
   }
 
-  dimension: congestion_charge_# {
+  dimension: congestion_charge_value {
     type: number
     sql: ${TABLE}."Congestion_Charge_#" ;;
   }
@@ -176,12 +176,12 @@ view: ut_ops_jobs_snowflake {
     sql: ${TABLE}."FROM_SUBURB_CODE" ;;
   }
 
-  dimension: hand_priced_£ {
+  dimension: hand_priced_money {
     type: number
     sql: ${TABLE}."Hand_Priced_£" ;;
   }
 
-  dimension: hand_priced_# {
+  dimension: hand_priced_value {
     type: number
     sql: ${TABLE}."Hand_Priced_#" ;;
   }
@@ -206,12 +206,12 @@ view: ut_ops_jobs_snowflake {
     sql: ${TABLE}."KM_AMOUNT" ;;
   }
 
-  dimension: loading_time_£ {
+  dimension: loading_time_money {
     type: number
     sql: ${TABLE}."Loading_Time_£" ;;
   }
 
-  dimension: loading_time_# {
+  dimension: loading_time_value {
     type: number
     sql: ${TABLE}."Loading_Time_#" ;;
   }
@@ -221,12 +221,12 @@ view: ut_ops_jobs_snowflake {
     sql: ${TABLE}."M_MESSAGE" ;;
   }
 
-  dimension: mileage_£ {
+  dimension: mileage_money {
     type: number
     sql: ${TABLE}."Mileage_£" ;;
   }
 
-  dimension: mileage_# {
+  dimension: mileage_value {
     type: number
     sql: ${TABLE}."Mileage_#" ;;
   }
@@ -306,12 +306,12 @@ view: ut_ops_jobs_snowflake {
     sql: ${TABLE}."REFERENCE_NO" ;;
   }
 
-  dimension: saturday_delivery_£ {
+  dimension: saturday_delivery_money {
     type: number
     sql: ${TABLE}."Saturday_Delivery_£" ;;
   }
 
-  dimension: saturday_delivery_# {
+  dimension: saturday_delivery_value {
     type: number
     sql: ${TABLE}."Saturday_Delivery_#" ;;
   }
@@ -379,22 +379,22 @@ view: ut_ops_jobs_snowflake {
     sql: ${TABLE}."TO_SUBURB_CODE" ;;
   }
 
-  dimension: toll_£ {
+  dimension: toll_money {
     type: number
     sql: ${TABLE}."Toll_£" ;;
   }
 
-  dimension: toll_# {
+  dimension: toll_value {
     type: number
     sql: ${TABLE}."Toll_#" ;;
   }
 
-  dimension: total_amount_£ {
+  dimension: total_amount_money {
     type: number
     sql: ${TABLE}."Total_Amount_£" ;;
   }
 
-  dimension: total_amount_# {
+  dimension: total_amount_value {
     type: number
     sql: ${TABLE}."Total_Amount_#" ;;
   }
@@ -424,22 +424,22 @@ view: ut_ops_jobs_snowflake {
     sql: ${TABLE}."VEHICLE_TYPE" ;;
   }
 
-  dimension: wr_£ {
+  dimension: wr_money {
     type: number
     sql: ${TABLE}."WR_£" ;;
   }
 
-  dimension: wr_# {
+  dimension: wr_value {
     type: number
     sql: ${TABLE}."WR_#" ;;
   }
 
-  dimension: wt_£ {
+  dimension: wt_money {
     type: number
     sql: ${TABLE}."WT_£" ;;
   }
 
-  dimension: wt_# {
+  dimension: wt_value {
     type: number
     sql: ${TABLE}."WT_#" ;;
   }
