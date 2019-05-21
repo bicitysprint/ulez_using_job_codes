@@ -90,7 +90,7 @@ explore: ut_finance_jobs_snowflake {
   }
 
   join: postcodelatlng {
-    view_label: "Master postcode table with lats and longs (from)"
+    view_label: "From postcode lats and longs"
     type: left_outer
     relationship: many_to_one
     sql_on: ${ut_ops_jobs_snowflake.from_suburb_code} = ${postcodelatlng.postcode} ;;
@@ -98,7 +98,7 @@ explore: ut_finance_jobs_snowflake {
 
   join: postcodelatlng_2 {
     from: postcodelatlng
-    view_label: "Master postcode table with lats and longs (to)"
+    view_label: "To postcode lats and longs"
     type: left_outer
     relationship: many_to_one
     sql_on: ${ut_ops_jobs_snowflake.to_suburb_code} = ${postcodelatlng_2.postcode} ;;
