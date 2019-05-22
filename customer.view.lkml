@@ -1014,62 +1014,63 @@ view: customer {
       field: iscreditcardaccount
       value: "Yes"
     }
+    drill_fields: [detail*]
   }
 
   measure: distinct_accounts {
     type: count_distinct
     sql: ${cust_key} ;;
-    drill_fields: []
+    drill_fields: [detail*]
   }
 
   measure: distinct_consols {
   type: count_distinct
   sql: ${pickup_contact} ;;
-  drill_fields: []
+  drill_fields: [detail*]
   }
 
   measure: distinct_clients {
   type: count_distinct
   sql: ${bank_account_no} ;;
-  drill_fields: []
+  drill_fields: [detail*]
 }
 
   measure: sum_debt_period_1 {
     type: sum
     sql: ${period_amt_1} ;;
-    drill_fields: []
+    drill_fields: [detail*]
   }
 
   measure: sum_debt_period_2 {
     type: sum
     sql: ${period_amt_2} ;;
-    drill_fields: []
+    drill_fields: [detail*]
   }
 
   measure: sum_debt_period_3 {
     type: sum
     sql: ${period_amt_3} ;;
-    drill_fields: []
+    drill_fields: [detail*]
   }
 
   measure: sum_debt_period_4 {
     type: sum
     sql: ${period_amt_4} ;;
-    drill_fields: []
+    drill_fields: [detail*]
   }
 
 
   measure: sum_period_amount_current {
     type: sum
     sql: ${period_amt_curr} ;;
-    drill_fields: []
+    drill_fields: [detail*]
   }
 
 
   measure: sum_unallocated_amount {
     type: sum
     sql: ${unallocated_amt} ;;
-    drill_fields: []
+    drill_fields: [detail*]
   }
 
 
@@ -1092,7 +1093,13 @@ view: customer {
     pickup_contact,
     cust_key,
     name,
-    start_year
+    start_date,
+    period_amt_1,
+    period_amt_2,
+    period_amt_3,
+    period_amt_4,
+    period_amt_curr,
+    unallocated_amt
     ]
   }
 }
