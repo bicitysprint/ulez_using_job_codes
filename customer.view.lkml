@@ -726,6 +726,7 @@ view: customer {
       raw,
       time,
       date,
+      week_of_year,
       week,
       month,
       quarter,
@@ -837,6 +838,44 @@ view: customer {
     sql: ${TABLE}."YTD_SALES_AMT" ;;
   }
 
+  dimension: iscreditcardaccount {
+    type: string
+    sql: case when ${credit_card_flag} = 'F' then 'Yes' else 'No' end ;;
+  }
+
+
+
+measure: distinct_count_credit_card_accounts {
+  type: count_distinct
+  sql: ${iscreditcardaccount} ;;
+  filters: {
+    field: iscreditcardaccount
+    value: "Yes"
+  }
+}
+
+
+
+  measure: distinct_accounts {
+    type: count_distinct
+    sql: ${cust_key} ;;
+    drill_fields: []
+  }
+
+measure: distinct_consols {
+  type: count_distinct
+  sql: ${pickup_contact} ;;
+  drill_fields: []
+  }
+
+measure: distinct_clients {
+  type: count_distinct
+  sql: ${bank_account_no} ;;
+  drill_fields: []
+}
+
+
+
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -845,14 +884,12 @@ view: customer {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-      name,
-      rep_name,
-      statement_name,
-      bank_name,
-      branch_name,
-      trading_as_name,
-      print_comp_name,
-      card_name
+    bank_account_no,
+    bank_name,
+    pickup_contact,
+    cust_key,
+    name,
+    start_year
     ]
   }
 }
