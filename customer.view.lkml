@@ -1,6 +1,9 @@
 view: customer {
   sql_table_name: CC.CUSTOMER ;;
 
+
+  ############################################## DIMENSIONS #################################################################
+
   dimension: abn {
     hidden: yes
     type: string
@@ -146,6 +149,7 @@ view: customer {
   }
 
   dimension: credit_card_flag {
+    label: "credit_card_flag"
     type: string
     sql: ${TABLE}."CREDIT_CARD_FLAG" ;;
   }
@@ -170,6 +174,7 @@ view: customer {
 
   dimension: cust_key {
     label: "customer_key"
+    primary_key: yes
     type: string
     sql: ${TABLE}."CUST_KEY" ;;
   }
@@ -181,6 +186,8 @@ view: customer {
   }
 
   dimension_group: date_1 {
+    hidden: yes
+    label: "date_1"
     type: time
     timeframes: [
       raw,
@@ -188,6 +195,8 @@ view: customer {
       date,
       week,
       week_of_year,
+      month_name,
+      month_num,
       month,
       quarter,
       year
@@ -460,19 +469,22 @@ view: customer {
   }
 
   dimension: last_recpt_amt {
-    hidden: yes
+    label: "last_receipt_amount"
     type: number
     sql: ${TABLE}."LAST_RECPT_AMT" ;;
   }
 
   dimension_group: last_recpt {
-    hidden: yes
+    label: "last_receipt_date"
     type: time
     timeframes: [
       raw,
       time,
       date,
       week,
+      week_of_year,
+      month_name,
+      month_num,
       month,
       quarter,
       year
@@ -607,31 +619,31 @@ view: customer {
   }
 
   dimension: period_amt_1 {
-    hidden: yes
+    label: "debt_period_1"
     type: number
     sql: ${TABLE}."PERIOD_AMT_1" ;;
   }
 
   dimension: period_amt_2 {
-    hidden: yes
+    label: "debt_period_2"
     type: number
     sql: ${TABLE}."PERIOD_AMT_2" ;;
   }
 
   dimension: period_amt_3 {
-    hidden: yes
+    label: "debt_period_3"
     type: number
     sql: ${TABLE}."PERIOD_AMT_3" ;;
   }
 
   dimension: period_amt_4 {
-    hidden: yes
+    label: "debt_period_4"
     type: number
     sql: ${TABLE}."PERIOD_AMT_4" ;;
   }
 
   dimension: period_amt_curr {
-    hidden: yes
+    label: "period_amount_current"
     type: number
     sql: ${TABLE}."PERIOD_AMT_CURR" ;;
   }
@@ -757,41 +769,49 @@ view: customer {
   }
 
   dimension: sales_code_a {
+    label: "client_type"
     type: string
     sql: ${TABLE}."SALES_CODE_A" ;;
   }
 
   dimension: sales_code_b {
+    label: "circuits"
     type: string
     sql: ${TABLE}."SALES_CODE_B" ;;
   }
 
   dimension: sales_code_c {
+    label: "invoice_type"
     type: string
     sql: ${TABLE}."SALES_CODE_C" ;;
   }
 
   dimension: sales_code_d {
+    label: "office_code"
     type: string
     sql: ${TABLE}."SALES_CODE_D" ;;
   }
 
   dimension: sales_code_e {
+    label: "local_sales_person"
     type: string
     sql: ${TABLE}."SALES_CODE_E" ;;
   }
 
   dimension: sales_code_f {
+    label: "CCG"
     type: string
     sql: ${TABLE}."SALES_CODE_F" ;;
   }
 
   dimension: sales_code_g {
+    label: "account_mgr"
     type: string
     sql: ${TABLE}."SALES_CODE_G" ;;
   }
 
   dimension: sales_code_h {
+    label: "credit_controller"
     type: string
     sql: ${TABLE}."SALES_CODE_H" ;;
   }
@@ -815,7 +835,7 @@ view: customer {
   }
 
   dimension: send_promo_mail {
-    label: "Acquisition Code"
+    label: "acquisition_code"
     type: string
     sql: ${TABLE}."SEND_PROMO_MAIL" ;;
   }
@@ -838,6 +858,7 @@ view: customer {
   }
 
   dimension_group: start {
+    label: "account_start_date"
     type: time
     timeframes: [
       raw,
@@ -845,6 +866,8 @@ view: customer {
       date,
       week_of_year,
       week,
+      month_name,
+      month_num,
       month,
       quarter,
       year
@@ -949,7 +972,7 @@ view: customer {
   }
 
   dimension: unallocated_amt {
-    hidden: yes
+    label: "unallocated_amount"
     type: number
     sql: ${TABLE}."UNALLOCATED_AMT" ;;
   }
@@ -977,18 +1000,21 @@ view: customer {
     sql: case when ${credit_card_flag} = 'F' then 'Yes' else 'No' end ;;
   }
 
+############################################## DIMENSIONS #################################################################
 
 
-measure: distinct_count_credit_card_accounts {
-  type: count_distinct
-  sql: ${iscreditcardaccount} ;;
-  filters: {
-    field: iscreditcardaccount
-    value: "Yes"
+############################################## MEASURES #################################################################
+
+
+ measure: distinct_count_credit_card_accounts {
+    hidden: yes
+    type: count_distinct
+    sql: ${iscreditcardaccount} ;;
+    filters: {
+      field: iscreditcardaccount
+      value: "Yes"
+    }
   }
-}
-
-
 
   measure: distinct_accounts {
     type: count_distinct
@@ -996,17 +1022,55 @@ measure: distinct_count_credit_card_accounts {
     drill_fields: []
   }
 
-measure: distinct_consols {
+  measure: distinct_consols {
   type: count_distinct
   sql: ${pickup_contact} ;;
   drill_fields: []
   }
 
-measure: distinct_clients {
+  measure: distinct_clients {
   type: count_distinct
   sql: ${bank_account_no} ;;
   drill_fields: []
 }
+
+  measure: sum_debt_period_1 {
+    type: sum
+    sql: ${period_amt_1} ;;
+    drill_fields: []
+  }
+
+  measure: sum_debt_period_2 {
+    type: sum
+    sql: ${period_amt_2} ;;
+    drill_fields: []
+  }
+
+  measure: sum_debt_period_3 {
+    type: sum
+    sql: ${period_amt_3} ;;
+    drill_fields: []
+  }
+
+  measure: sum_debt_period_4 {
+    type: sum
+    sql: ${period_amt_4} ;;
+    drill_fields: []
+  }
+
+
+  measure: sum_period_amount_current {
+    type: sum
+    sql: ${period_amt_curr} ;;
+    drill_fields: []
+  }
+
+
+  measure: sum_unallocated_amount {
+    type: sum
+    sql: ${unallocated_amt} ;;
+    drill_fields: []
+  }
 
 
 
@@ -1015,6 +1079,11 @@ measure: distinct_clients {
     drill_fields: [detail*]
   }
 
+  ############################################## MEASURES #################################################################
+
+
+
+############################################## DRILL DOWNS #################################################################
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
