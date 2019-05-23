@@ -5,17 +5,17 @@ include: "*.view"
 
 
 
-#################### CACHE ##############################
+#################### CACHE ##################################
 datagroup: ulez_using_job_codes_default_datagroup {
   sql_trigger: SELECT sum(revenue-discount) FROM ut_finance_jobs_snowflake;;
   max_cache_age: "15 hour"
 }
 persist_with: ulez_using_job_codes_default_datagroup
-#########################################################
+#############################################################
 
 
 
-#################### GP VALUE FORMAT ####################
+#################### GP VALUE FORMAT ########################
 named_value_format: gbp_format_1 {
   value_format: "[>=1000000]\"£\"0.00,,\"M\";[>=0]\"£\"0.00,\"K\";\"£\"0.00"
 }
@@ -27,7 +27,7 @@ named_value_format: gbp_format_2 {
 named_value_format: gbp_format_dp {
   value_format: "\"£\"#,##0.00"
 }
-#########################################################
+#############################################################
 
 
 
