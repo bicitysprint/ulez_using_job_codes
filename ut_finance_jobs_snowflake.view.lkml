@@ -1,6 +1,9 @@
 view: ut_finance_jobs_snowflake {
   sql_table_name: CC.UT_FINANCE_JOBS_SNOWFLAKE ;;
 
+
+######################################## DIMENSIONS ######################################################
+
   dimension: account_ref {
     label: "invoice_number"
     type: string
@@ -216,6 +219,10 @@ view: ut_finance_jobs_snowflake {
     sql: ${TABLE}."VATRATE" ;;
   }
 
+######################################## DIMENSIONS ######################################################
+
+
+######################################## MEASURES ########################################################
   measure: count {
     description: "count of all jobs"
     type: count
@@ -280,9 +287,10 @@ view: ut_finance_jobs_snowflake {
     value_format: "0.00\%"
     drill_fields: [drill_field*]
   }
+######################################## MEASURES ########################################################
 
 
-
+######################################## DRILL DOWNS #####################################################
 
 set: drill_field {
   fields: [
