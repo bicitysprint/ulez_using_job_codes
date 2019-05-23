@@ -853,6 +853,7 @@ view: customer {
   }
 
   dimension: service_code {
+    label: "service_code"
     type: string
     sql: ${TABLE}."SERVICE_CODE" ;;
   }
@@ -995,7 +996,7 @@ view: customer {
     sql: ${TABLE}."YTD_SALES_AMT" ;;
   }
 
-  dimension: iscreditcardaccount {
+  dimension: is_credit_card_account {
     type: string
     sql: case when ${credit_card_flag} = 'F' then 'Yes' else 'No' end ;;
   }
@@ -1009,9 +1010,9 @@ view: customer {
  measure: distinct_count_credit_card_accounts {
     hidden: yes
     type: count_distinct
-    sql: ${iscreditcardaccount} ;;
+    sql: ${is_credit_card_account} ;;
     filters: {
-      field: iscreditcardaccount
+      field: is_credit_card_account
       value: "Yes"
     }
     drill_fields: [detail*]
