@@ -35,6 +35,7 @@ view: driver {
   }
 
   dimension: archive {
+    label: "archive"
     type: number
     sql: ${TABLE}."ARCHIVE" ;;
   }
@@ -193,11 +194,13 @@ view: driver {
   }
 
   dimension: driver_class {
+    label: "driver_class"
     type: string
     sql: ${TABLE}."DRIVER_CLASS" ;;
   }
 
   dimension: driver_key {
+    label: "driver_key"
     type: string
     sql: ${TABLE}."DRIVER_KEY" ;;
   }
@@ -749,7 +752,8 @@ view: driver {
     sql: ${TABLE}."STAND_JOB_DESC" ;;
   }
 
-  dimension_group: start_d {
+  dimension_group: start {
+    label: "driver_start_date"
     type: time
     timeframes: [
       raw,
