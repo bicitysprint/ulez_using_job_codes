@@ -43,7 +43,7 @@ view: ut_finance_jobs_snowflake {
 
   dimension: archive {
     label: "archive"
-    type: number
+    type: string
     sql: ${TABLE}."ARCHIVE" ;;
   }
 
@@ -149,7 +149,7 @@ view: ut_finance_jobs_snowflake {
 
   dimension: job_no {
     label: "job_no"
-    type: number
+    type: string
     sql: ${TABLE}."JOB_NO" ;;
   }
 
@@ -210,69 +210,91 @@ view: ut_finance_jobs_snowflake {
   measure: count {
     description: "count of all jobs"
     type: count
-    drill_fields: []
+    drill_fields: [drill_field*]
   }
 
   measure: sum_revenue {
     description: "does not include discount"
     type: sum
     sql: ${revenue} ;;
-    drill_fields: []
+    drill_fields: [drill_field*]
 
   }
 
   measure: sum_discount {
     type: sum
     sql: ${discount} ;;
-    drill_fields: []
+    drill_fields: [drill_field*]
   }
 
   measure: customer_charge {
     description: "revenue minus discount"
     type: sum
     sql: (${revenue}-${discount}) ;;
-    drill_fields: []
+    drill_fields: [drill_field*]
   }
 
   measure: sum_driver_cost {
     type: sum
     sql: ${driver_cost} ;;
-    drill_fields: []
+    drill_fields: [drill_field*]
   }
 
   measure: sum_agent_cost {
     type: sum
     sql: ${agent_cost} ;;
-    drill_fields: []
+    drill_fields: [drill_field*]
   }
 
   measure: sum_trunk_cost {
     type: sum
     sql: ${trunk_cost} ;;
-    drill_fields: []
+    drill_fields: [drill_field*]
   }
 
-  measure: sum_cost {
+  measure: total_cost {
     description: "driver plus agent and trunk costs"
     type: sum
     sql: (${driver_cost}+${agent_cost}+${trunk_cost}) ;;
-    drill_fields: []
+    drill_fields: [drill_field*]
   }
 
   measure: margin {
     type: sum
     sql: (${revenue}-${discount})-(${driver_cost}+${agent_cost}+${trunk_cost}) ;;
-    drill_fields: []
+    drill_fields: [drill_field*]
   }
 
   measure: margin_pef {
     type: number
     sql: 100 * case when sum(${revenue}-${discount}) = 0.00 then 0.00 else sum((${revenue}-${discount})-(${driver_cost}+${agent_cost}+${trunk_cost}))/sum(${revenue}-${discount}) end;;
     value_format: "0.00\%"
-    drill_fields: []
+    drill_fields: [drill_field*]
   }
 
 
+
+
+set: drill_field {
+  fields: [
+    archive,
+    job_no,
+    customer_key,
+    booking_d_date,
+    booking_t_raw,
+    account_service_centre,
+    job_service_centre,
+    driver_key,
+    umbrella_service,
+    service_code,
+    service_group,
+    customer_charge,
+    total_cost,
+    margin,
+    margin_pef
+  ]
+
+}
 
 
 
