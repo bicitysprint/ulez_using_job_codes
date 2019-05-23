@@ -139,6 +139,8 @@ view: ut_finance_jobs_snowflake {
       time,
       date,
       week_of_year,
+      month_name,
+      month_num,
       week,
       month,
       quarter,
@@ -199,6 +201,13 @@ view: ut_finance_jobs_snowflake {
     label: "umbrella_service"
     type: string
     sql: ${TABLE}."UMBRELLA_SERVICE" ;;
+  }
+
+  dimension: umbrella_group {
+    label: "umbrella_group"
+    type: string
+    sql: case when ${umbrella_service} in ('SameDay','Pharma to Home','On The Dot') then 'SameDay'
+              when ${umbrella_service} in ('UK Overnight','International','Network Courier') then 'NDI' else 'Other' end   ;;
   }
 
   dimension: vatrate {
@@ -280,11 +289,13 @@ set: drill_field {
     archive,
     job_no,
     customer_key,
+    booking_d_week_of_year,
     booking_d_date,
-    booking_t_raw,
+    booking_t_time_of_day,
     account_service_centre,
     job_service_centre,
     driver_key,
+    agent,
     umbrella_service,
     service_code,
     service_group,
