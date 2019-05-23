@@ -38,7 +38,7 @@ explore: ut_finance_jobs_snowflake {
 
 
   join: ut_ops_jobs_snowflake {
-    view_label: "Ops details"
+    view_label: "ops_details"
     type: inner
     relationship: one_to_one
     sql_on: ${ut_finance_jobs_snowflake.archive_job} = ${ut_ops_jobs_snowflake.archive_job} ;;
@@ -46,7 +46,7 @@ explore: ut_finance_jobs_snowflake {
 
 
   join: customer  {
-    view_label: "Customer details"
+    view_label: "customer_details"
     type: inner
     relationship: many_to_one
     sql_on: ${ut_finance_jobs_snowflake.customer_key} = ${customer.cust_key} ;;
@@ -54,7 +54,7 @@ explore: ut_finance_jobs_snowflake {
 
 
   join: salecode  {
-    view_label: "Salecode description"
+    view_label: "salecode_descriptions"
     type: inner
     relationship: many_to_many
     sql_on: ${customer.sales_code_c} = ${salecode.sales_code} and ${ut_finance_jobs_snowflake.archive} = ${salecode.archive};;
@@ -62,35 +62,35 @@ explore: ut_finance_jobs_snowflake {
 
 
   join: service {
-    view_label: "Service description"
+    view_label: "service_descriptions"
     type: inner
     relationship: many_to_many
     sql_on: ${ut_finance_jobs_snowflake.service_code} = ${service.code} and  ${ut_finance_jobs_snowflake.archive} = ${service.archive} ;;
   }
 
   join: ut_system_ccg  {
-    view_label: "CCG description"
+    view_label: "CCG_descriptions"
     type: left_outer
     relationship: many_to_one
     sql_on: ${customer.sales_code_f} = ${ut_system_ccg.sales_code_f} ;;
   }
 
   join: jdetail_ulez_view {
-    view_label: "ULEZ client and driver charges"
+    view_label: "ULEZ_client_and_driver_charges"
     type: inner
     relationship: one_to_one
     sql_on: ${ut_finance_jobs_snowflake.archive_job} = ${jdetail_ulez_view.archive_job} ;;
   }
 
   join: jdetail_ulez_jobs_view {
-    view_label: "ULEZ which job belongs to what job code"
+    view_label: "ULEZ_job_code_references"
     type: inner
     relationship: one_to_one
     sql_on: ${ut_finance_jobs_snowflake.archive_job} = ${jdetail_ulez_jobs_view.archive_job} ;;
   }
 
   join: postcodelatlng {
-    view_label: "From postcode lats and longs"
+    view_label: "from_postcode_lats_and_longs"
     type: left_outer
     relationship: many_to_one
     sql_on: ${ut_ops_jobs_snowflake.from_suburb_code} = ${postcodelatlng.postcode} ;;
@@ -98,21 +98,21 @@ explore: ut_finance_jobs_snowflake {
 
   join: postcodelatlng_2 {
     from: postcodelatlng
-    view_label: "To postcode lats and longs"
+    view_label: "to_postcode_lats_and_longs"
     type: left_outer
     relationship: many_to_one
     sql_on: ${ut_ops_jobs_snowflake.to_suburb_code} = ${postcodelatlng_2.postcode} ;;
   }
 
  join: driver {
-  view_label: "CS driver details"
+  view_label: "citytrak_driver_details"
   type: left_outer
   relationship: many_to_many
   sql_on: ${ut_finance_jobs_snowflake.driver_key} = ${driver.driver_key} and ${ut_finance_jobs_snowflake.archive} = ${driver.archive} ;;
   }
 
   join: ifleet_drivers {
-    view_label: "Ifleet driver details"
+    view_label: "ifleet_driver_details"
     type: left_outer
     relationship: many_to_one
     sql_on: ${driver.num_1} = ${ifleet_drivers.userid} ;;
