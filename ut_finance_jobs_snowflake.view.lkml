@@ -261,13 +261,14 @@ view: ut_finance_jobs_snowflake {
 
   measure: margin {
     type: sum
-    sql: sum(${revenue}-${discount})-sum(${driver_cost}+${agent_cost}+${trunk_cost}) ;;
+    sql: (${revenue}-${discount})-(${driver_cost}+${agent_cost}+${trunk_cost}) ;;
     drill_fields: []
   }
 
   measure: margin_pef {
-    type: sum
-    sql: (sum(${revenue}-${discount})-sum(${driver_cost}+${agent_cost}+${trunk_cost}))/(sum(${revenue}-${discount}))   ;;
+    type: number
+    sql: 100 * case when sum(${revenue}-${discount}) = 0.00 then 0.00 else sum((${revenue}-${discount})-(${driver_cost}+${agent_cost}+${trunk_cost}))/sum(${revenue}-${discount}) end;;
+    value_format: "0.00\%"
     drill_fields: []
   }
 
