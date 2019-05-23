@@ -910,6 +910,7 @@ view: driver {
 
  ############################################## MEASURES #################################################################
   measure: count {
+    description: "includes a count of all userids"
     type: count
     drill_fields: [detail*]
   }
@@ -923,12 +924,12 @@ view: driver {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-      name,
-      second_driv_name,
-      trading_as_name,
-      company_name,
-      bank_name,
-      business_name
+    archive,
+    num_1,
+    driver_key,
+    driver_class,
+    name,
+    start_date
     ]
   }
 }

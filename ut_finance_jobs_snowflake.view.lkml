@@ -253,11 +253,28 @@ view: ut_finance_jobs_snowflake {
   }
 
   measure: sum_cost {
-    description: "driver cost plus agent and trunk costs"
+    description: "driver plus agent and trunk costs"
     type: sum
     sql: (${driver_cost}+${agent_cost}+${trunk_cost}) ;;
     drill_fields: []
   }
+
+  measure: margin {
+    type: sum
+    sql: sum(${revenue}-${discount})-sum(${driver_cost}+${agent_cost}+${trunk_cost}) ;;
+    drill_fields: []
+  }
+
+  measure: margin_pef {
+    type: sum
+    sql: (sum(${revenue}-${discount})-sum(${driver_cost}+${agent_cost}+${trunk_cost}))/(sum(${revenue}-${discount}))   ;;
+    drill_fields: []
+  }
+
+
+
+
+
 
 
 }
