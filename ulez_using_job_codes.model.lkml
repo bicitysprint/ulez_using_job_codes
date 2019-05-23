@@ -24,7 +24,7 @@ named_value_format: gbp_format_2 {
   value_format: "#,##0.00"
 }
 
-named_value_format: gbp_format_dp {
+named_value_format: gbp_format_3 {
   value_format: "\"£\"#,##0.00"
 }
 #############################################################
