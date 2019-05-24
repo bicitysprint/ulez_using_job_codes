@@ -412,8 +412,56 @@ view: ifleet_drivers {
 
 #################################### MEASURES ################################################
 
-  #measure: count {
-  #  type: count
-  #  drill_fields: [name]
-  #}
+  measure: count {
+    type: count
+    drill_fields: [drill_fields*]
+  }
+
+  measure: distinct_count_user_ids {
+    type: count_distinct
+    sql:  ${userid};;
+    drill_fields: [drill_fields*]
+  }
+
+  measure: distinct_count_lez_compliant {
+    type: count_distinct
+    sql: ${userid} ;;
+    filters: {
+      field: lez
+      value: "1"
+          }
+      drill_fields: [drill_fields*]
+  }
+
+  measure: distinct_count_non_lez_compliant {
+    type: count_distinct
+    sql:  CASE WHEN ${lez} = 1 THEN NULL ELSE ${userid} END ;;
+    drill_fields: [drill_fields*]
+  }
+
+
+
+
+
+
+#################################### MEASURES ################################################
+
+
+
+
+#################################### DRILL DOWNS #############################################
+
+  set: drill_fields {
+    fields: [
+    ifleet_drivers.userid,
+    ifleet_drivers.callsign,
+    ifleet_drivers.approved,
+    ifleet_drivers.vechtype,
+    ifleet_drivers.user_role,
+    ifleet_drivers.service_centre,
+    ifleet_drivers.lez,
+    ifleet_drivers.lez_group
+    ]
+  }
+
 }
