@@ -36,6 +36,7 @@ named_value_format: gbp_format_3 {
 explore: ut_finance_jobs_snowflake {
   label: "ULEZ by job codes"
   view_label: "finance_details"
+  fields: [ALL_FIELDS*]
 
 
   join: ut_ops_jobs_snowflake {
