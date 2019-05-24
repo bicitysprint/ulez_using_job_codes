@@ -84,59 +84,88 @@ view: jdetail_ulez_view {
 #################################### MEASURES ################################################
   measure: count {
     type: count
-    drill_fields: []
+    drill_fields: [drill_fields*]
   }
 
   measure: sum_of_client_charge_UL {
     type: sum
     sql: ${client_charge_ul} ;;
+    drill_fields: [drill_fields*]
   }
 
 
   measure: sum_of_client_charge_UX {
     type: sum
     sql: ${client_charge_ux} ;;
+    drill_fields: [drill_fields*]
   }
 
   measure: sum_of_client_charge_UY {
     type: sum
     sql: ${client_charge_uy} ;;
+    drill_fields: [drill_fields*]
   }
 
   measure: sum_of_client_charge_UZ {
     type: sum
     sql: ${client_charge_uz} ;;
+    drill_fields: [drill_fields*]
   }
 
   measure: sum_of_driver_charge_UL {
     type: sum
     sql: ${driver_charge_ul} ;;
+    drill_fields: [drill_fields*]
   }
 
   measure: sum_of_driver_charge_UX {
     type: sum
     sql: ${driver_charge_ux} ;;
+    drill_fields: [drill_fields*]
   }
 
   measure: sum_of_driver_charge_UY {
     type: sum
     sql: ${driver_charge_uy} ;;
+    drill_fields: [drill_fields*]
   }
 
   measure: sum_of_driver_charge_UZ {
     type: sum
     sql: ${driver_charge_uz} ;;
+    drill_fields: [drill_fields*]
   }
 
   measure: total_ulez_driver_charge {
     type: sum
     sql: (${driver_charge_ul} + ${driver_charge_ux} + ${driver_charge_uy} + ${driver_charge_uz}) ;;
+    drill_fields: [drill_fields*]
   }
 
   measure: total_ulez_client_charge {
     type: sum
     sql: (${client_charge_ul} + ${client_charge_ux} + ${client_charge_uy} + ${client_charge_uz}) ;;
+    drill_fields: [drill_fields*]
   }
 #################################### MEASURES ################################################
+
+#################################### DRILL DOWNS #############################################
+
+set: drill_fields {
+  fields: [
+    archive,
+    job_number,
+    sum_of_client_charge_UL,
+    sum_of_client_charge_UX,
+    sum_of_client_charge_UY,
+    sum_of_client_charge_UZ,
+    sum_of_driver_charge_UL,
+    sum_of_driver_charge_UX,
+    sum_of_driver_charge_UY,
+    sum_of_driver_charge_UZ,
+    total_ulez_client_charge,
+    total_ulez_driver_charge
+  ]
+}
 
 }
