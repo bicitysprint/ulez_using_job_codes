@@ -281,7 +281,7 @@ view: ut_finance_jobs_snowflake {
     drill_fields: [drill_field*]
   }
 
-  measure: margin_pef {
+  measure: margin_perf {
     type: number
     sql: 100 * case when sum(${revenue}-${discount}) = 0.00 then 0.00 else sum((${revenue}-${discount})-(${driver_cost}+${agent_cost}+${trunk_cost}))/sum(${revenue}-${discount}) end;;
     value_format: "0.00\%"
@@ -310,7 +310,7 @@ set: drill_field {
     customer_charge,
     total_cost,
     margin,
-    margin_pef
+    margin_perf
   ]
 
 }
