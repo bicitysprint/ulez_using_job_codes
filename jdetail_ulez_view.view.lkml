@@ -6,7 +6,7 @@ view: jdetail_ulez_view {
 #################################### DIMENSIONS ##############################################
   dimension: archive {
     label: "archive"
-    type: number
+    type: string
     sql: ${TABLE}."ARCHIVE" ;;
   }
 
@@ -68,7 +68,7 @@ view: jdetail_ulez_view {
 
   dimension: job_number {
     label: "job_no"
-    type: number
+    type: string
     sql: ${TABLE}."JOB_NUMBER" ;;
   }
 
