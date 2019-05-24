@@ -53,6 +53,12 @@ view: ifleet_drivers {
     sql: ${TABLE}."APPROVED" ;;
   }
 
+  dimension: approved_flag {
+    label: "approved_flag"
+    type: string
+    sql: case when ${approved} = 1 then 'On circuit' else 'Not on circuit' end ;;
+  }
+
   dimension: associated_assets {
     label: "associated_assets"
     hidden: yes
@@ -456,6 +462,7 @@ view: ifleet_drivers {
     ifleet_drivers.userid,
     ifleet_drivers.callsign,
     ifleet_drivers.approved,
+    ifleet_drivers.approved_flag,
     ifleet_drivers.vechtype,
     ifleet_drivers.user_role,
     ifleet_drivers.service_centre,

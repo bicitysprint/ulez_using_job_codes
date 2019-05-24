@@ -158,6 +158,7 @@ set: drill_fields {
     ifleet_drivers.userid,
     ifleet_drivers.callsign,
     ifleet_drivers.approved,
+    ifleet_drivers.approved_flag,
     ifleet_drivers.vechtype,
     ifleet_drivers.user_role,
     ifleet_drivers.service_centre,
