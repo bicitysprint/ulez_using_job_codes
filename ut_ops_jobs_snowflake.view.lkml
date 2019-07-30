@@ -242,6 +242,7 @@ view: ut_ops_jobs_snowflake {
   dimension: job_no {
     label: "job_no"
     type: number
+    value_format_name: id
     sql: ${TABLE}."JOB_NO" ;;
   }
 
