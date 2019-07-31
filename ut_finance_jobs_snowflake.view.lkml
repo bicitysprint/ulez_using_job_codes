@@ -155,6 +155,7 @@ view: ut_finance_jobs_snowflake {
   dimension: job_no {
     label: "job_no"
     type: string
+    value_format_name: id
     sql: ${TABLE}."JOB_NO" ;;
   }
 
