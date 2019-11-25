@@ -120,12 +120,6 @@ explore: ut_finance_jobs_snowflake {
     sql_on: ${driver.num_1} = ${ifleet_drivers.userid} ;;
   }
 
-  join: ifleet_applications {
-    view_label: "ifleet_applications"
-    type: left_outer
-    relationship: many_to_many
-    sql_on: ${ifleet_drivers.userid} = ${ifleet_applications.userid} ;;
-  }
 
 
 }
