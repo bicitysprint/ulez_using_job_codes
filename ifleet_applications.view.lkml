@@ -2,17 +2,20 @@ view: ifleet_applications {
   sql_table_name: CC.IFLEET_APPLICATIONS ;;
 
   dimension: actionid {
+    hidden:  yes
     type: number
     value_format_name: id
     sql: ${TABLE}."ACTIONID" ;;
   }
 
   dimension: actionname {
+    hidden: yes
     type: string
     sql: ${TABLE}."ACTIONNAME" ;;
   }
 
   dimension: mob {
+    hidden: yes
     type: string
     sql: ${TABLE}."MOB" ;;
   }
@@ -23,6 +26,7 @@ view: ifleet_applications {
   }
 
   dimension: postcode {
+    hidden: yes
     type: string
     sql: ${TABLE}."POSTCODE" ;;
   }
@@ -42,6 +46,7 @@ view: ifleet_applications {
   }
 
   dimension: service_centre {
+    hidden: yes
     type: string
     sql: ${TABLE}."SERVICE_CENTRE" ;;
   }
@@ -57,6 +62,7 @@ view: ifleet_applications {
   }
 
   dimension: telnum {
+    hidden: yes
     type: string
     sql: ${TABLE}."TELNUM" ;;
   }
@@ -69,6 +75,7 @@ view: ifleet_applications {
   }
 
   dimension: vechtype {
+    hidden: yes
     type: string
     sql: ${TABLE}."VECHTYPE" ;;
   }
