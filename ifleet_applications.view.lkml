@@ -62,6 +62,7 @@ view: ifleet_applications {
   }
 
   dimension: userid {
+    primary_key: yes
     type: number
     value_format_name: id
     sql: ${TABLE}."USERID" ;;
