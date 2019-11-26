@@ -130,7 +130,7 @@ explore: ut_finance_jobs_snowflake {
   join: ifleet_applications  {
     view_label: "application details"
     type: left_outer
-    relationship: many_to_many
+    relationship: one_to_one
     sql_on: ${ifleet_drivers.userid} = ${ifleet_applications.userid} ;;
   }
 
