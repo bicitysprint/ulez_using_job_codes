@@ -899,7 +899,6 @@ view: driver {
   }
 
   dimension: vehicle_type {
-    hidden: yes
     type: string
     sql: ${TABLE}."VEHICLE_TYPE" ;;
   }

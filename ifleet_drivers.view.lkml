@@ -210,6 +210,7 @@ view: ifleet_drivers {
 
   dimension: lez {
     label: "lez"
+    hidden: yes
     type: number
     sql: ${TABLE}."LEZ" ;;
   }
