@@ -116,14 +116,14 @@ explore: ut_finance_jobs_snowflake {
   join: ifleet_drivers {
     view_label: "ifleet_driver_details"
     type: left_outer
-    relationship: many_to_one
+    relationship: one_to_one
     sql_on: ${driver.num_1} = ${ifleet_drivers.userid} ;;
   }
 
   join: vehicle {
     view_label: "vehicle details"
     type: left_outer
-    relationship: one_to_many
+    relationship: many_to_many
     sql_on: ${driver.vehicle_type} = ${vehicle.vehicle_code} ;;
   }
 
