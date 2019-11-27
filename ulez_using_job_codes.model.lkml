@@ -123,13 +123,13 @@ explore: ut_finance_jobs_snowflake {
   join: vehicle {
     view_label: "vehicle details"
     type: left_outer
-    relationship: many_to_many
+    relationship: many_to_one
     sql_on: ${driver.vehicle_type} = ${vehicle.vehicle_code} ;;
   }
 
   join: ifleet_applications  {
     view_label: "application details"
-    type: left_outer
+    type: inner
     relationship: one_to_one
     sql_on: ${ifleet_drivers.userid} = ${ifleet_applications.userid} ;;
   }
