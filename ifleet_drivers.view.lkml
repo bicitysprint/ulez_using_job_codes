@@ -83,7 +83,10 @@ view: ifleet_drivers {
   dimension: callsign {
     label: "callsign"
     type: string
-    sql: ${TABLE}."CALLSIGN" ;;
+    sql: case
+    when ${TABLE}."CALLSIGN" LIKE 'C%' then 'Third Party Courier'
+    else ${TABLE}."CALLSIGN"
+    END  ;;
   }
 
   dimension: cap {
