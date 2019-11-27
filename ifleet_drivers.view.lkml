@@ -314,7 +314,6 @@ view: ifleet_drivers {
 
   dimension_group: registerdate {
     label: "register_date"
-    hidden: yes
     type: time
     timeframes: [
       raw,
